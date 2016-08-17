@@ -1,0 +1,38 @@
+<div class="row" align="center">
+
+    <div class="col-md-4 col-md-offset-4 voffset6">
+        <form name="userForm" align="center" novalidate>
+            <fieldset>
+                <legend>User Details</legend><br>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="username" placeholder="username"
+                    ng-model="user.username" ng-focus="requiredFieldMissing=false;actvRequiredCheck=true" required/>
+                    <br><br>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" name="password" placeholder="password"
+                    ng-model="user.password" ng-focus="requiredFieldMissing=false;actvRequiredCheck=true" required/>
+                    <br><br>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="email" placeholder="email address"
+                    ng-model="user.email" ng-focus="requiredFieldMissing=false;actvRequiredCheck=true" required/>
+                    <br><br>
+                </div>
+                <button type="submit" class="btn btn-primary" ng-click="registerUser()">Register</button>                    
+                
+            </fieldset>
+        </form>
+    </div>
+
+    <div class="col-md-4 col-md-offset-4" align="center" ng-show="actvRequiredCheck===true">
+        <div ng-messages="userForm.$error">
+            <div ng-message="required" class="alert alert-warning">Required field is empty</div>
+        </div>
+    </div>
+
+    <div class="col-md-4 col-md-offset-4" align="center">
+        <div ng-show="requiredFieldMissing===true" class="alert alert-danger">Please fill all the fields</div>
+    </div>
+
+</div>  

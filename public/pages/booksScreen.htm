@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-md-2 col-md-offset-10">
+        <p>Hello {{ username }} !!</p>
+    </div>
+</div>  
+
+<div class="row">
+    <div class="col-md-2 col-md-offset-10">
+        <a href="#/">Logout</a>
+    </div>
+</div>  
+
+
+<div class="row voffset3">
+    <div class="form-group col-md-2 col-md-offset-2">
+        <input class="form-control" type="text" name="bookname" placeholder="Search by Name"
+        ng-model="book.name"/>
+    </div>
+    <div class="form-group col-md-2 col-md-offset-1">
+        <input class="form-control" type="text" name="bookauthor" placeholder="Search by Author"
+        ng-model="book.author"/>
+    </div>
+    <div class="col-md-2 col-md-offset-1">
+        <div class="dropdown">
+            <button class="btn btn-primary form-control dropdown-toggle" type="button" data-toggle="dropdown">Search By Genre
+            <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+                <li ng-click="book.genre=''"><a href="">All</a></li>
+                <li ng-repeat="genre in genres" ng-click="book.genre=genre"><a href="">{{ genre }}</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 col-md-offset-3 voffset4">
+        <ul class="list-group">
+            <li class="list-group-item" ng-repeat="bk in books">
+                Title# <strong>{{ bk.name }}</strong><br>Author# {{ bk.author }} Genre# {{ bk.genre }}
+                <span class="pull-right" ng-show="bk.count>0 && bk.issuedTo.indexOf(username)===-1" ng-click="issueBook(bk._id)">
+                    <a href="">Grab it</a>
+                </span>
+                <span class="text-danger pull-right" ng-show="bk.count<=0 && bk.issuedTo.indexOf(username)===-1">Out of Stock</span>
+                <span class="pull-right" ng-show="bk.issuedTo.indexOf(username)!==-1" ng-click="returnBook(bk._id)">
+                    <a href="">Return it</a>
+                </span>
+            </li>
+        </ul>
+    </div>
+</div>

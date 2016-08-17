@@ -1,0 +1,81 @@
+<div class="row">
+    <div class="col-md-2 col-md-offset-10">
+        <p>Hello {{ username }} !!</p>
+    </div>
+</div>  
+
+<div class="row">
+    <div class="col-md-2 col-md-offset-10">
+        <a href="#/">Logout</a>
+    </div>
+</div>  
+
+
+<div class="row voffset3">
+    <div class="form-group col-md-2 col-md-offset-2">
+        <input class="form-control" type="text" name="bookname" placeholder="Search by Name"
+        ng-model="book.name"/>
+    </div>
+    <div class="form-group col-md-2 col-md-offset-1">
+        <input class="form-control" type="text" name="bookauthor" placeholder="Search by Author"
+        ng-model="book.author"/>
+    </div>
+    <div class="col-md-2 col-md-offset-1">
+        <div class="dropdown">
+            <button class="btn btn-primary form-control dropdown-toggle" type="button" data-toggle="dropdown">Search By Genre
+            <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+                <li ng-click="book.genre=''"><a href="">All</a></li>
+                <li ng-repeat="genre in genres" ng-click="book.genre=genre"><a href="">{{ genre }}</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8 col-md-offset-2 voffset4">
+        <ul class="list-group">
+            <li class="list-group-item" ng-repeat="bk in books">
+                Title# <strong>{{ bk.name }}</strong><br>Author# {{ bk.author }} Genre# {{ bk.genre }}
+                <span class="pull-right" ng-show="bk.count>0" ng-click="removeBook(bk._id)">
+                    |<a href="">Remove book</a>
+                </span>
+                <span class="pull-right" ng-click="addBook(bk._id)">
+                    <a href="">Add book</a>
+                </span>
+                <span class="text-danger pull-right" ng-show="bk.count<=0">Out of Stock|</span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="row voffset2">
+    <div class="col-md-10 col-md-offset-1">
+        <h3 class="text-center">Add New Book</h3><hr>
+    </div>
+</div>
+
+<div class="row voffset1">
+    <div class="form-group col-md-4 col-md-offset-1">
+        <input type="text" class="form-control" placeholder="Book Name" ng-model="newBook.name"/>
+    </div>
+    <div class="form-group col-md-4 col-md-offset-2">
+        <input type="text" class="form-control" placeholder="Author" ng-model="newBook.author"/>
+    </div>
+</div>
+
+<div class="row voffset1">
+    <div class="form-group col-md-2 col-md-offset-4">
+        <input type="text" class="form-control" placeholder="Genre" ng-model="newBook.genre"/>
+    </div>
+    <div class="form-group col-md-2">
+        <input type="text" class="form-control" placeholder="Quantity" ng-model="newBook.qty"/>
+    </div>
+</div>
+
+
+<div class="row voffset1">
+    <div class="form-group col-md-4 col-md-offset-4">
+        <button type="submit" class="btn btn-primary center-block" ng-click="addNewBook()">Add Book</button>
+    </div>
+</div>
